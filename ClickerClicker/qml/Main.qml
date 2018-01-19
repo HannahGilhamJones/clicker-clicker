@@ -42,7 +42,7 @@ GameWindow {
             anchors.centerIn: scene
 
             Image {
-                id: clickableObject
+                id: moon
 
                 anchors.fill: moonContainer
 
@@ -51,12 +51,20 @@ GameWindow {
                 MouseArea {
                     id: clickableMouseArea
 
-                    anchors.fill: clickableObject
+                    anchors.fill: moon
 
                     onClicked: addClick()
                 }
             }
         }
+    }
+
+    Timer {
+        id: timer
+
+        interval: 1000; running: true; repeat: true
+
+        onTriggered: addClick()
     }
 
     function addClick()
