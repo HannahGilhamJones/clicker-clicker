@@ -8,7 +8,7 @@ GameWindow {
 
     activeScene: scene
 
-    screenWidth: 960
+    screenWidth: 1136
     screenHeight: 640
 
     Scene {
@@ -20,7 +20,7 @@ GameWindow {
         Rectangle {
             id: rectangle
             anchors.fill: scene.gameWindowAnchorItem
-            color: "blue"
+            color: "#cccccc"
         }
 
         Text {
@@ -32,22 +32,29 @@ GameWindow {
             text: "Clicks : " + numberofClicks
         }
 
-        Rectangle {
-            id: clickableObject
+        Item {
+
+            id: moonContainer
+
+            width: scene.width / 3
+            height: width
 
             anchors.centerIn: scene
 
-            width: 200
-            height: 200
+            Image {
+                id: clickableObject
 
-            color: "red"
+                anchors.fill: moonContainer
 
-            MouseArea {
-                id: clickableMouseArea
+                source: "qrc:/Moon.svg"
 
-                anchors.fill: clickableObject
+                MouseArea {
+                    id: clickableMouseArea
 
-                onClicked: addClick()
+                    anchors.fill: clickableObject
+
+                    onClicked: addClick()
+                }
             }
         }
     }
