@@ -43,3 +43,12 @@ win32 {
 macx {
     ICON = macx/app_icon.icns
 }
+
+DISTFILES += \
+    qml/Menu.qml \
+    qml/Game.qml \
+    qml/Button.qml \
+    qml/SceneBase.qml
+
+HEADERS += \
+    qml/Button.h

@@ -2,73 +2,50 @@ import VPlay 2.0
 import QtQuick 2.0
 
 GameWindow {
-    id: gameWindow
+  id: gameWindow
 
-    property int numberofClicks : 0
+  screenWidth: 1136
+  screenHeight: 640
 
-    activeScene: scene
+  state: "menu"
 
-    screenWidth: 1136
-    screenHeight: 640
+  Menu {
+    id: menuScene
 
-    Scene {
-        id: scene
+    anchors.fill: parent
 
-        width: 480
-        height: 320
+    onSelectGameScene: gameWindow.state = "game"
+    onSelectRestartGame: gameWindow.state = "restart"
+    onSelectQuitGame: gameWindow.state = "quit"
+  }
 
-        Rectangle {
-            id: rectangle
-            anchors.fill: scene.gameWindowAnchorItem
-            color: "#cccccc"
-        }
+  Game {
+    id: gameScene
 
-        Text {
-            id: clicks
+    anchors.fill: parent
 
-            anchors.horizontalCenter: scene.horizontalCenter
-            anchors.top: scene.top
+    onBackButtonPressed: gameWindow.state = "menu"
+  }
 
-            text: "Clicks : " + numberofClicks
-        }
-
-        Item {
-
-            id: moonContainer
-
-            width: scene.width / 3
-            height: width
-
-            anchors.centerIn: scene
-
-            Image {
-                id: moon
-
-                anchors.fill: moonContainer
-
-                source: "qrc:/Moon.svg"
-
-                MouseArea {
-                    id: clickableMouseArea
-
-                    anchors.fill: moon
-
-                    onClicked: addClick()
-                }
-            }
-        }
-    }
-
-    Timer {
-        id: timer
-
-        interval: 1000; running: true; repeat: true
-
-        onTriggered: addClick()
-    }
-
-    function addClick()
-    {
-        ++numberofClicks
-    }
+  states: [
+       State {
+         name: "menu"
+         PropertyChanges {target: menuScene; opacity: 1}
+         PropertyChanges {target: gameWindow; activeScene: menuScene}
+       },
+      State {
+        name: "restart"
+        PropertyChanges {target: gameScene; opacity: 1}
+        PropertyChanges {target: gameWindow; activeScene: gameScene}
+        PropertyChanges {target: gameScene; numberofClicks: 0}
+      },
+       State {
+         name: "game"
+         PropertyChanges {target: gameScene; opacity: 1}
+         PropertyChanges {target: gameWindow; activeScene: gameScene}
+       },
+      State {
+        name: "quit"
+      }
+     ]
 }
