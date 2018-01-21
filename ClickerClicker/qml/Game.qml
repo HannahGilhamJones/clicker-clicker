@@ -4,6 +4,8 @@ import QtQuick 2.0
 SceneBase {
     id: gameScene
 
+    signal returntoMenu
+
     property int numberofClicks : 0
 
     Text {

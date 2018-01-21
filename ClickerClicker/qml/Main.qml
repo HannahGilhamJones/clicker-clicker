@@ -24,7 +24,7 @@ GameWindow {
 
     anchors.fill: parent
 
-    onBackButtonPressed: gameWindow.state = "menu"
+    onReturntoMenu: gameWindow.state = "menu"
   }
 
   states: [

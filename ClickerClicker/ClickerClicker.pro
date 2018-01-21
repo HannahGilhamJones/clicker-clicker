@@ -49,6 +49,3 @@ DISTFILES += \
     qml/Game.qml \
     qml/Button.qml \
     qml/SceneBase.qml
-
-HEADERS += \
-    qml/Button.h
