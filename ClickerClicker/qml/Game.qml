@@ -40,10 +40,35 @@ SceneBase {
         }
 
         GameButton {
-            id: hundredButton
-
             text: "Add " + score
             score: 100
+        }
+    }
+
+    Column {
+        id: rightColumn
+
+        anchors.verticalCenter: gameScene.verticalCenter
+
+        anchors.right: gameScene.right
+
+        width: gameScene.width * 0.3
+
+        spacing: 10
+
+        GameButton {
+            text: "Add " + score
+            score: 200
+        }
+
+        GameButton {
+            text: "Add " + score
+            score: 500
+        }
+
+        GameButton {
+            text: "Add " + score
+            score: 1000
         }
     }
 
