@@ -30,21 +30,29 @@ SceneBase {
     }
   }
 
+  // Menu Options
+
   Column {
-    anchors.centerIn: parent
-    spacing: 5
+      anchors.centerIn: parent
+      spacing: 5
 
     Button {
-      text: "Start Game"
-      onClicked: selectGameScene()
+        anchors.horizontalCenter: parent.horizontalCenter
+
+        text: "Start Game"
+        onClicked: selectGameScene()
     }
 
     Button {
-      text: "Restart Game"
-      onClicked: selectRestartGame()
+        anchors.horizontalCenter: parent.horizontalCenter
+
+        text: "Restart Game"
+        onClicked: selectRestartGame()
     }
 
     Button {
+        anchors.horizontalCenter: parent.horizontalCenter
+
         text: "Quit Game"
         onClicked: selectQuitGame()
     }

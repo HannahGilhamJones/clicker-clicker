@@ -48,4 +48,5 @@ DISTFILES += \
     qml/Menu.qml \
     qml/Game.qml \
     qml/Button.qml \
-    qml/SceneBase.qml
+    qml/SceneBase.qml \
+    qml/GameButton.qml

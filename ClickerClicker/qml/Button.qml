@@ -13,8 +13,6 @@ Rectangle {
   width: buttonText.width + paddingHorizontal * 2
   height: buttonText.height + paddingVertical * 2
 
-  anchors.horizontalCenter: parent.horizontalCenter
-
   color: "#f4d742"
 
   Text {
