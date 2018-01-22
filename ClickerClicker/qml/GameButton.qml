@@ -10,6 +10,7 @@ Item {
 
     property alias text: buttonText.text
     property int score
+    property string currentColor: mouseArea.enabled ? "#f4d742" : "#cdcdcd"
 
     anchors.horizontalCenter: parent.horizontalCenter
 
@@ -19,7 +20,7 @@ Item {
     Rectangle {
         id: background
         anchors.fill: parent
-        color: "#f4d742"
+        color: currentColor
     }
 
     Text {
@@ -35,6 +36,24 @@ Item {
         onPressed: gameButton.pressed()
         onReleased: gameButton.released()
         onClicked: gameButton.clicked()
+    }
+
+    Timer {
+        id: buttonCooldown
+
+        interval: score * 100; running: false; repeat: false
+
+        onRunningChanged: {
+            mouseArea.enabled = true
+            background.color = currentColor
+        }
+    }
+
+    onClicked: {
+        gameScene.addClick(score)
+        buttonCooldown.start()
+        mouseArea.enabled = false
+        background.color = currentColor
     }
 
     onPressed: {

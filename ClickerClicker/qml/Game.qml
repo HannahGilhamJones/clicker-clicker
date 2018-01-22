@@ -32,15 +32,11 @@ SceneBase {
         GameButton {
             text: "Add " + score
             score: 5
-
-            onClicked: addClick(score)
         }
 
         GameButton {
             text: "Add " + score
             score: 10
-
-            onClicked: addClick(score)
         }
 
         GameButton {
@@ -48,17 +44,6 @@ SceneBase {
 
             text: "Add " + score
             score: 100
-
-            onClicked: {
-                addClick(score)
-                hundredCooldown.start()
-            }
-
-            Timer {
-                id: hundredCooldown
-
-                interval: 5000; running: false; repeat: false
-            }
         }
     }
 
