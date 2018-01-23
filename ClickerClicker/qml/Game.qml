@@ -30,18 +30,53 @@ SceneBase {
         spacing: 10
 
         GameButton {
+            id: fiveButton
+
             text: "Add " + score
-            score: 5
+            initialScore: 5
+
+            Rectangle {
+                id: amountToBuy
+
+                property int toBuy : Math.floor(numberofClicks / fiveButton.score)
+
+                width: 20
+                height: 20
+
+                radius: 10
+
+                anchors.right: parent.left
+                anchors.verticalCenter: parent.top
+
+                Text {
+                    anchors.centerIn: parent
+                    text : "x" + amountToBuy.toBuy;
+                }
+
+                MouseArea {
+                    id: buy
+
+                    anchors.fill: parent
+
+                    onClicked: {
+                        if(amountToBuy.toBuy > 0)
+                        {
+                            gameScene.numberofClicks = gameScene.numberofClicks - amountToBuy.toBuy
+                            fiveButton.score = fiveButton.score * amountToBuy.toBuy
+                        }
+                    }
+                }
+            }
         }
 
         GameButton {
             text: "Add " + score
-            score: 10
+            initialScore: 10
         }
 
         GameButton {
             text: "Add " + score
-            score: 100
+            initialScore: 100
         }
     }
 
@@ -58,17 +93,17 @@ SceneBase {
 
         GameButton {
             text: "Add " + score
-            score: 200
+            initialScore: 200
         }
 
         GameButton {
             text: "Add " + score
-            score: 500
+            initialScore: 500
         }
 
         GameButton {
             text: "Add " + score
-            score: 1000
+            initialScore: 1000
         }
     }
 

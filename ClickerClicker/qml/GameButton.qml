@@ -9,7 +9,8 @@ Item {
     signal released
 
     property alias text: buttonText.text
-    property int score
+    property int initialScore
+    property int score : initialScore
     property string currentColor: mouseArea.enabled ? "#f4d742" : "#cdcdcd"
 
     anchors.horizontalCenter: parent.horizontalCenter
@@ -41,7 +42,7 @@ Item {
     Timer {
         id: buttonCooldown
 
-        interval: score * 100; running: false; repeat: false
+        interval: initialScore * 100; running: false; repeat: false
 
         onRunningChanged: {
             mouseArea.enabled = true
