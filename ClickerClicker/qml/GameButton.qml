@@ -9,9 +9,12 @@ Item {
     signal released
 
     property alias text: buttonText.text
-    property int initialScore
-    property int score : initialScore
     property string currentColor: mouseArea.enabled ? "#f4d742" : "#cdcdcd"
+
+    property int initialScore
+    property int score : initialScore * amount
+    property int cost : 2.71828 * score
+    property int amount : 1
 
     anchors.horizontalCenter: parent.horizontalCenter
 
@@ -37,6 +40,41 @@ Item {
         onPressed: gameButton.pressed()
         onReleased: gameButton.released()
         onClicked: gameButton.clicked()
+    }
+
+    Rectangle {
+        id: amountToBuy
+
+        property int toBuy : Math.floor(numberofClicks / gameButton.cost)
+        property int numberBuying : 0
+
+        width: 20
+        height: 20
+
+        radius: 10
+
+        anchors.right: parent.left
+        anchors.verticalCenter: parent.top
+
+        Text {
+            anchors.centerIn: parent
+            text : "x" + amountToBuy.toBuy;
+        }
+
+        MouseArea {
+            id: buy
+
+            anchors.fill: parent
+
+            enabled: amountToBuy.toBuy > 0 ? true : false
+
+            onClicked: {
+                numberBuying = amountToBuy.toBuy
+
+                gameScene.numberofClicks -= gameButton.cost;
+                gameButton.amount += numberBuying
+            }
+        }
     }
 
     Timer {
