@@ -58,21 +58,21 @@ Item {
 
         Text {
             anchors.centerIn: parent
-            text : "x" + amountToBuy.toBuy;
+            text : "x" + amountToBuy.toBuy
         }
 
         MouseArea {
-            id: buy
+            id: buyButton
 
             anchors.fill: parent
 
             enabled: amountToBuy.toBuy > 0 ? true : false
 
             onClicked: {
-                numberBuying = amountToBuy.toBuy
+                amountToBuy.numberBuying = amountToBuy.toBuy
 
-                gameScene.numberofClicks -= gameButton.cost;
-                gameButton.amount += numberBuying
+                gameScene.numberofClicks -= gameButton.cost
+                gameButton.amount += amountToBuy.numberBuying
             }
         }
     }
