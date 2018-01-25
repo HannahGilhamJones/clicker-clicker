@@ -6,42 +6,43 @@ SceneBase {
 
     signal returntoMenu
 
-    property int numberofClicks : 0
-    property int padding : 10
+    property int totalNumberofClicks : 0
 
     Text {
-        id: clicks
+        id: totalClicksText
 
         anchors.horizontalCenter: gameScene.horizontalCenter
         anchors.top: gameScene.top
 
-        text: "Clicks : " + numberofClicks
+        text: "Clicks : " + totalNumberofClicks
     }
 
     Column {
         id: leftColumn
 
         anchors.verticalCenter: gameScene.verticalCenter
-
         anchors.left: gameScene.left
 
         width: gameScene.width * 0.3
-
         spacing: 10
 
-        GameButton {
-            text: "Add " + score
-            initialScore: 5
-        }
+        Repeater {
+            model: 3
 
-        GameButton {
-            text: "Add " + score
-            initialScore: 10
-        }
+            GameButton {
+                text: "Add " + score
 
-        GameButton {
-            text: "Add " + score
-            initialScore: 100
+                initialScore: {
+                    if(index == 0)
+                    {
+                        initialScore = (index + 1) * 5
+                    }
+                    else
+                    {
+                        initialScore = (index * 10) * 3
+                    }
+                }
+            }
         }
     }
 
@@ -49,26 +50,29 @@ SceneBase {
         id: rightColumn
 
         anchors.verticalCenter: gameScene.verticalCenter
-
         anchors.right: gameScene.right
 
         width: gameScene.width * 0.3
 
         spacing: 10
 
-        GameButton {
-            text: "Add " + score
-            initialScore: 200
-        }
+        Repeater {
+            model: 3
 
-        GameButton {
-            text: "Add " + score
-            initialScore: 500
-        }
+            GameButton {
+                text: "Add " + score
 
-        GameButton {
-            text: "Add " + score
-            initialScore: 1000
+                initialScore: {
+                    if(index == 0)
+                    {
+                        initialScore = (index + 100) * 2
+                    }
+                    else
+                    {
+                        initialScore = (index * 5) * 100
+                    }
+                }
+            }
         }
     }
 
@@ -89,8 +93,6 @@ SceneBase {
             source: "qrc:/Moon.svg"
 
             MouseArea {
-                id: clickableMouseArea
-
                 anchors.fill: moon
 
                 onClicked: addClick(1)
@@ -109,8 +111,10 @@ SceneBase {
        onClicked: returntoMenu()
     }
 
+    ////////////////////////////////////////////////////////
+
     function addClick(score)
     {
-        numberofClicks += score
+        totalNumberofClicks += score
     }
 }

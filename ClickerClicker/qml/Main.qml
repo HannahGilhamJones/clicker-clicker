@@ -37,7 +37,7 @@ GameWindow {
         name: "restart"
         PropertyChanges {target: gameScene; opacity: 1}
         PropertyChanges {target: gameWindow; activeScene: gameScene}
-        PropertyChanges {target: gameScene; numberofClicks: 0}
+        PropertyChanges {target: gameScene; totalNumberofClicks: 0}
       },
        State {
          name: "game"

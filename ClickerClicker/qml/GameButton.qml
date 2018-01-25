@@ -9,7 +9,7 @@ Item {
     signal released
 
     property alias text: buttonText.text
-    property string currentColor: mouseArea.enabled ? "#f4d742" : "#cdcdcd"
+    property string currentColor: buttonMouseArea.enabled ? "#f4d742" : "#cdcdcd"
 
     property int initialScore
     property int score : initialScore * amount
@@ -33,7 +33,7 @@ Item {
     }
 
     MouseArea {
-        id: mouseArea
+        id: buttonMouseArea
 
         anchors.fill: background
 
@@ -45,33 +45,34 @@ Item {
     Rectangle {
         id: amountToBuy
 
-        property int toBuy : Math.floor(numberofClicks / gameButton.cost)
+        property int canBuy : Math.floor(totalNumberofClicks / gameButton.cost)
         property int numberBuying : 0
-
-        width: 20
-        height: 20
-
-        radius: 10
+        property string currentColor: toBuyMouseArea.enabled ? "#f4d742" : "#cdcdcd"
 
         anchors.right: parent.left
         anchors.verticalCenter: parent.top
 
+        width: 20
+        height: 20
+        radius: 10
+
+        color: currentColor
+
         Text {
             anchors.centerIn: parent
-            text : "x" + amountToBuy.toBuy
+            text : "x" + amountToBuy.canBuy
         }
 
         MouseArea {
-            id: buyButton
+            id: toBuyMouseArea
 
             anchors.fill: parent
 
-            enabled: amountToBuy.toBuy > 0 ? true : false
+            enabled: amountToBuy.canBuy > 0 ? true : false
 
             onClicked: {
-                amountToBuy.numberBuying = amountToBuy.toBuy
-
-                gameScene.numberofClicks -= gameButton.cost
+                amountToBuy.numberBuying = amountToBuy.canBuy
+                gameScene.totalNumberofClicks -= gameButton.cost
                 gameButton.amount += amountToBuy.numberBuying
             }
         }
@@ -83,15 +84,17 @@ Item {
         interval: initialScore * 100; running: false; repeat: false
 
         onRunningChanged: {
-            mouseArea.enabled = true
+            buttonMouseArea.enabled = true
             background.color = currentColor
         }
     }
 
+    /////////////////////////////////////////////////////////////////
+
     onClicked: {
         gameScene.addClick(score)
         buttonCooldown.start()
-        mouseArea.enabled = false
+        buttonMouseArea.enabled = false
         background.color = currentColor
     }
 
