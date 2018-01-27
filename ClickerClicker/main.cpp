@@ -2,14 +2,16 @@
 #include <VPApplication>
 
 #include <QQmlApplicationEngine>
+#include <QQmlContext>
 
+#include "gamebuttonmodel.h"
 
 int main(int argc, char *argv[])
 {
-
     QApplication app(argc, argv);
-
     VPApplication vplay;
+
+    qmlRegisterType<GameButtonModel>("GameButton", 1, 0, "GameButtonModel");
 
     QQmlApplicationEngine engine;
     vplay.initialize(&engine);

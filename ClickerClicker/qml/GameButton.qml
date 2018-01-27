@@ -1,6 +1,8 @@
 import QtQuick 2.0
 import VPlay 2.0
 
+import GameButton 1.0
+
 Item {
     id: gameButton
 
@@ -71,6 +73,8 @@ Item {
             enabled: amountToBuy.canBuy > 0 ? true : false
 
             onClicked: {
+                gameButtonModel.setAmount(amountToBuy.canBuy)
+
                 amountToBuy.numberBuying = amountToBuy.canBuy
                 gameScene.totalNumberofClicks -= gameButton.cost
                 gameButton.amount += amountToBuy.numberBuying
@@ -86,6 +90,22 @@ Item {
         onRunningChanged: {
             buttonMouseArea.enabled = true
             background.color = currentColor
+        }
+    }
+
+    GameButtonModel {
+        id: gameButtonModel
+
+        onCurrentScoreChanged: {
+            console.log("Score changed : " << score)
+        }
+
+        onInitialScoreChanged: {
+            console.log("Initial score changed : " << initialScore)
+        }
+
+        onAmountChanged: {
+            console.log("Amount changed : " << amount)
         }
     }
 
