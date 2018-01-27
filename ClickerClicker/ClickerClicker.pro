@@ -24,7 +24,7 @@ RESOURCES += \ #    resources.qrc # uncomment for publishing
 
 # The .cpp file which was generated for your project. Feel free to hack it.
 SOURCES += main.cpp \
-    gamebutton.cpp
+    gamebuttonmodel.cpp
 
 android {
     ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
@@ -53,4 +53,4 @@ DISTFILES += \
     qml/GameButton.qml
 
 HEADERS += \
-    gamebutton.h
+    gamebuttonmodel.h
