@@ -82,6 +82,20 @@ Item {
         }
     }
 
+    Text {
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+
+        text: "Amount : " + gameButton.amount
+    }
+
+    Text {
+        anchors.right: parent.right
+        anchors.top: parent.top
+
+        text: "Cost : " + gameButton.cost * amountToBuy.canBuy
+    }
+
     Timer {
         id: buttonCooldown
 
