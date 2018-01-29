@@ -74,6 +74,8 @@ Item {
 
             onClicked: {
                 gameButtonModel.setAmount(amountToBuy.canBuy)
+                gameButtonModel.setCost(gameButton.cost)
+                gameButtonModel.setCurrentScore(gameButton.initialScore * gameButton.score)
 
                 amountToBuy.numberBuying = amountToBuy.canBuy
                 gameScene.totalNumberofClicks -= gameButton.cost
@@ -99,6 +101,8 @@ Item {
     Timer {
         id: buttonCooldown
 
+        property int startTime
+
         interval: initialScore * 100; running: false; repeat: false
 
         onRunningChanged: {
@@ -109,6 +113,7 @@ Item {
 
     GameButtonModel {
         id: gameButtonModel
+
 
         onCurrentScoreChanged: {
             console.log("Score changed : " << score)
