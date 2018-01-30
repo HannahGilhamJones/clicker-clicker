@@ -24,6 +24,9 @@ Item {
     width: parent.width - 50
     height: 50
 
+    ///////////////////////////////////////////////////////////////////////////
+    //MAIN BUTTON
+
     ProgressBar {
         id: timerBar
 
@@ -34,10 +37,34 @@ Item {
         value: 0
         clip: true
 
+        //Background
         Rectangle {
             id: background
             anchors.fill: timerBar
             color: gameButton.currentColor
+        }
+
+        //Name of the button
+        Text {
+            id: buttonText
+
+            anchors.centerIn: timerBar
+        }
+
+        //Amount
+        Text {
+            anchors.right: timerBar.right
+            anchors.bottom: timerBar.bottom
+
+            text: "Amount : " + gameButton.amount
+        }
+
+        //Cost
+        Text {
+            anchors.right: timerBar.right
+            anchors.top: timerBar.top
+
+            text: "Cost : " + gameButton.cost * amountToBuy.canBuy
         }
 
         MouseArea {
@@ -49,26 +76,25 @@ Item {
             onReleased: gameButton.released()
             onClicked: gameButton.clicked()
         }
+
+
+        //Button cooldown
+        Timer {
+            id: buttonCooldown
+
+            property int startTime
+
+            interval: initialScore * 100; running: false; repeat: false
+
+            onRunningChanged: {
+                buttonMouseArea.enabled = true
+                background.color = currentColor
+            }
+        }
     }
 
-    Text {
-        id: buttonText
-        anchors.centerIn: timerBar
-    }
-
-    Text {
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
-
-        text: "Amount : " + gameButton.amount
-    }
-
-    Text {
-        anchors.right: parent.right
-        anchors.top: parent.top
-
-        text: "Cost : " + gameButton.cost * amountToBuy.canBuy
-    }
+    ///////////////////////////////////////////////////////////////////////////
+    //BUYING OPTION
 
     Rectangle {
         id: amountToBuy
@@ -110,18 +136,8 @@ Item {
         }
     }
 
-    Timer {
-        id: buttonCooldown
-
-        property int startTime
-
-        interval: initialScore * 100; running: false; repeat: false
-
-        onRunningChanged: {
-            buttonMouseArea.enabled = true
-            background.color = currentColor
-        }
-    }
+    ///////////////////////////////////////////////////////////////////////////
+    //MODEL
 
     GameButtonModel {
         id: gameButtonModel
@@ -140,7 +156,8 @@ Item {
         }
     }
 
-    /////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////
+    //FUNCTIONS
 
     onClicked: {
         gameScene.addClick(score)
