@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import QtQuick.Controls 1.4
 import VPlay 2.0
 
 import GameButton 1.0
@@ -23,25 +24,50 @@ Item {
     width: parent.width - 50
     height: 50
 
-    Rectangle {
-        id: background
-        anchors.fill: parent
-        color: currentColor
+    ProgressBar {
+        id: timerBar
+
+        anchors.centerIn: parent
+        height: parent.height
+        width: parent.width
+
+        value: 0
+        clip: true
+
+        Rectangle {
+            id: background
+            anchors.fill: timerBar
+            color: gameButton.currentColor
+        }
+
+        MouseArea {
+            id: buttonMouseArea
+
+            anchors.fill: timerBar
+
+            onPressed: gameButton.pressed()
+            onReleased: gameButton.released()
+            onClicked: gameButton.clicked()
+        }
     }
 
     Text {
         id: buttonText
-        anchors.centerIn: background
+        anchors.centerIn: timerBar
     }
 
-    MouseArea {
-        id: buttonMouseArea
+    Text {
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
 
-        anchors.fill: background
+        text: "Amount : " + gameButton.amount
+    }
 
-        onPressed: gameButton.pressed()
-        onReleased: gameButton.released()
-        onClicked: gameButton.clicked()
+    Text {
+        anchors.right: parent.right
+        anchors.top: parent.top
+
+        text: "Cost : " + gameButton.cost * amountToBuy.canBuy
     }
 
     Rectangle {
@@ -82,20 +108,6 @@ Item {
                 gameButton.amount += amountToBuy.numberBuying
             }
         }
-    }
-
-    Text {
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
-
-        text: "Amount : " + gameButton.amount
-    }
-
-    Text {
-        anchors.right: parent.right
-        anchors.top: parent.top
-
-        text: "Cost : " + gameButton.cost * amountToBuy.canBuy
     }
 
     Timer {
