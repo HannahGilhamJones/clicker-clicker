@@ -39,12 +39,6 @@ Item {
         clip: true
 
         //Background
-        //Rectangle {
-        //    id: background
-        //    anchors.fill: timerBar
-        //    color: gameButton.currentColor
-        //}
-
         LinearGradient {
             anchors.fill: timerBar
 
@@ -53,7 +47,17 @@ Item {
 
             gradient: Gradient {
                 GradientStop { position: 0.0; color: "#f4d742" }
+                GradientStop { id: timerGrad; position: 0.5; color: Qt.lighter("#f4d742", 2) }
                 GradientStop { position: 1.0; color: "#cdcdcd" }
+            }
+            PropertyAnimation {
+                id: buttonCooldownAnimation
+
+                target: timerGrad
+                property: "position"
+                from: 0.1
+                to: 0.9
+                duration: buttonCooldown.interval
             }
         }
 
@@ -99,10 +103,11 @@ Item {
 
             interval: initialScore * 100; running: false; repeat: false
 
-            //onRunningChanged: {
-            //    buttonMouseArea.enabled = true
-            //    background.color = currentColor
-            //}
+            onRunningChanged: {
+                buttonMouseArea.enabled = true
+                buttonCooldown.running ? buttonCooldownAnimation.running = true :
+                                         buttonCooldownAnimation.running = false
+            }
         }
     }
 
@@ -176,7 +181,6 @@ Item {
         gameScene.addClick(score)
         buttonCooldown.start()
         buttonMouseArea.enabled = false
-        //background.color = currentColor
     }
 
     onPressed: {
