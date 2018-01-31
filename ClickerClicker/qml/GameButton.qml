@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Controls 1.4
+import QtGraphicalEffects 1.0
 import VPlay 2.0
 
 import GameButton 1.0
@@ -38,10 +39,22 @@ Item {
         clip: true
 
         //Background
-        Rectangle {
-            id: background
+        //Rectangle {
+        //    id: background
+        //    anchors.fill: timerBar
+        //    color: gameButton.currentColor
+        //}
+
+        LinearGradient {
             anchors.fill: timerBar
-            color: gameButton.currentColor
+
+            start: Qt.point(0, 0)
+            end: Qt.point(timerBar.width, 0)
+
+            gradient: Gradient {
+                GradientStop { position: 0.0; color: "#f4d742" }
+                GradientStop { position: 1.0; color: "#cdcdcd" }
+            }
         }
 
         //Name of the button
@@ -86,10 +99,10 @@ Item {
 
             interval: initialScore * 100; running: false; repeat: false
 
-            onRunningChanged: {
-                buttonMouseArea.enabled = true
-                background.color = currentColor
-            }
+            //onRunningChanged: {
+            //    buttonMouseArea.enabled = true
+            //    background.color = currentColor
+            //}
         }
     }
 
@@ -163,7 +176,7 @@ Item {
         gameScene.addClick(score)
         buttonCooldown.start()
         buttonMouseArea.enabled = false
-        background.color = currentColor
+        //background.color = currentColor
     }
 
     onPressed: {
