@@ -1,5 +1,6 @@
 import QtQuick 2.0
-import QtQuick.Controls 1.4
+import QtQuick.Controls 2.0
+import QtQuick.Controls.Styles 1.4
 import QtGraphicalEffects 1.0
 import VPlay 2.0
 
@@ -38,6 +39,13 @@ Item {
         value: 0
         clip: true
 
+        background: Rectangle {
+            radius: 5
+            color: "#f4d742"
+            border.color: "#cdcdcd"
+            border.width: 2
+        }
+
         //Background
         LinearGradient {
             anchors.fill: timerBar
@@ -45,7 +53,9 @@ Item {
             start: Qt.point(0, 0)
             end: Qt.point(timerBar.width, 0)
 
-            gradient: Gradient {
+            source: timerBar
+
+            gradient : Gradient {
                 GradientStop { position: 0.0; color: "#f4d742" }
                 GradientStop { id: timerGrad; position: 0.5; color: Qt.lighter("#f4d742", 2) }
                 GradientStop { position: 1.0; color: "#cdcdcd" }
@@ -55,8 +65,8 @@ Item {
 
                 target: timerGrad
                 property: "position"
-                from: 0.1
-                to: 0.9
+                from: 0.0
+                to: 1.0
                 duration: buttonCooldown.interval
             }
         }
