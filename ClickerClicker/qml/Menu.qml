@@ -8,6 +8,8 @@ SceneBase {
   signal selectRestartGame
   signal selectQuitGame
 
+  property string elapsedTime
+
   Rectangle {
       id: titleBackground
 
@@ -28,6 +30,16 @@ SceneBase {
         color: "#e9e9e9"
         text: "Clicker Clicker"
     }
+
+    Text {
+        id: elapsedTimeText
+
+        anchors.horizontalCenter: titleBackground.horizontalCenter
+        anchors.top: titleBackground.bottom
+
+        text: "You played for " + elapsedTime + " seconds"
+    }
+
   }
 
   // Menu Options
@@ -40,7 +52,10 @@ SceneBase {
         anchors.horizontalCenter: parent.horizontalCenter
 
         text: "Start Game"
-        onClicked: selectGameScene()
+        onClicked: {
+            selectGameScene()
+            playTime.start()
+        }
     }
 
     Button {

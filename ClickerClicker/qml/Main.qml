@@ -1,6 +1,8 @@
 import VPlay 2.0
 import QtQuick 2.0
 
+import GameTimer 1.0
+
 GameWindow {
   id: gameWindow
 
@@ -14,7 +16,10 @@ GameWindow {
 
     anchors.fill: parent
 
-    onSelectGameScene: gameWindow.state = "game"
+    onSelectGameScene: {
+        playTime.start()
+        gameWindow.state = "game"
+    }
     onSelectRestartGame: gameWindow.state = "restart"
     onSelectQuitGame: gameWindow.state = "quit"
   }
@@ -24,7 +29,10 @@ GameWindow {
 
     anchors.fill: parent
 
-    onReturntoMenu: gameWindow.state = "menu"
+    onReturntoMenu: {
+        playTime.stop()
+        gameWindow.state = "menu"
+    }
   }
 
   states: [
@@ -32,6 +40,7 @@ GameWindow {
          name: "menu"
          PropertyChanges {target: menuScene; opacity: 1}
          PropertyChanges {target: gameWindow; activeScene: menuScene}
+         PropertyChanges {target: menuScene; elapsedTime: playTime.elapsedTime}
        },
       State {
         name: "restart"
@@ -48,4 +57,9 @@ GameWindow {
         name: "quit"
       }
      ]
+
+
+  GameTimer {
+      id: playTime
+  }
 }
