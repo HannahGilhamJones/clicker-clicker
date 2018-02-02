@@ -169,19 +169,6 @@ Item {
 
     GameButtonModel {
         id: gameButtonModel
-
-
-        onCurrentScoreChanged: {
-            console.log("Score changed : " << score)
-        }
-
-        onInitialScoreChanged: {
-            console.log("Initial score changed : " << initialScore)
-        }
-
-        onAmountChanged: {
-            console.log("Amount changed : " << amount)
-        }
     }
 
     ///////////////////////////////////////////////////////////////////////////

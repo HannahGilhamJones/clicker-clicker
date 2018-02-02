@@ -1,7 +1,5 @@
 #include "gamebuttonmodel.h"
 
-#include <QDebug>
-
 GameButtonModel::GameButtonModel(QObject *parent) :
     QObject(parent),
     m_currentScore(0),
@@ -41,8 +39,6 @@ void GameButtonModel::setCurrentScore(int score)
         m_currentScore = score;
     }
 
-    qInfo() << "This is the current score : " <<  this->getCurrentScore();
-
     emit this->currentScoreChanged(m_currentScore);
 }
 
@@ -52,8 +48,6 @@ void GameButtonModel::setInitialScore(int initialScore)
     {
         m_initialScore = initialScore;
     }
-
-    qInfo() << "This is the initial score : " << this->getInitialScore();
 
     emit this->initialScoreChanged(m_initialScore);
 }
@@ -65,8 +59,6 @@ void GameButtonModel::setAmount(int amount)
         m_amount += amount;
     }
 
-    qInfo() << "This is the amount : " << this->getAmount();
-
     emit this->amountChanged(m_amount);
 }
 
@@ -76,8 +68,6 @@ void GameButtonModel::setCost(int cost)
     {
         m_cost = cost;
     }
-
-    qInfo() << "This is the cost : " << this->getCost();
 
     emit this->costChanged(m_cost);
 }
