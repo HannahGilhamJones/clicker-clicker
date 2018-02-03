@@ -21,6 +21,8 @@ GameWindow {
         gameWindow.state = "game"
     }
     onSelectRestartGame: gameWindow.state = "restart"
+    onSelectAchievementsScene: gameWindow.state = "achievements"
+    onSelectSettingsScene: gameWindow.state = "settings"
     onSelectQuitGame: gameWindow.state = "quit"
   }
 
@@ -53,6 +55,16 @@ GameWindow {
          PropertyChanges {target: gameScene; opacity: 1}
          PropertyChanges {target: gameWindow; activeScene: gameScene}
        },
+      State {
+          name: "achievements"
+          PropertyChanges {target: menuScene; opacity: 1}
+          PropertyChanges {target: gameWindow; activeScene: menuScene}
+      },
+      State {
+          name: "settings"
+          PropertyChanges {target: menuScene; opacity: 1}
+          PropertyChanges {target: gameWindow; activeScene: menuScene}
+      },
       State {
         name: "quit"
       }

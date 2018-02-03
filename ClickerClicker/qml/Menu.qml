@@ -6,6 +6,8 @@ SceneBase {
 
   signal selectGameScene
   signal selectRestartGame
+  signal selectAchievementsScene
+  signal selectSettingsScene
   signal selectQuitGame
 
   property string elapsedTime
@@ -63,6 +65,20 @@ SceneBase {
 
         text: "Restart Game"
         onClicked: selectRestartGame()
+    }
+
+    Button {
+        anchors.horizontalCenter: parent.horizontalCenter
+
+        text: "Achievements"
+        onClicked: selectAchievementsScene()
+    }
+
+    Button {
+        anchors.horizontalCenter: parent.horizontalCenter
+
+        text: "Settings"
+        onClicked: selectSettingsScene()
     }
 
     Button {
