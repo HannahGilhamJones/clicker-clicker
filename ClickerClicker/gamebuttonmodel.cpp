@@ -1,73 +1,131 @@
 #include "gamebuttonmodel.h"
 
-GameButtonModel::GameButtonModel(QObject *parent) :
+
+GameButtonModel::GameButtonModel(QObject * parent) :
     QObject(parent),
-    m_currentScore(0),
+    m_name(""),
+    m_cost(0),
     m_initialScore(0),
     m_amount(0),
-    m_cost(0)
+    m_cooldown(0),
+    m_costToAutomate(0),
+    m_elapsedTime(0)
 {
-    /*
-     * NOTE: Never reach into QML
-     */
 }
 
-int GameButtonModel::getCurrentScore()
+QString GameButtonModel::name() const
 {
-    return m_currentScore;
+    return m_name;
 }
 
-int GameButtonModel::getInitialScore()
-{
-    return m_initialScore;
-}
-
-int GameButtonModel::getAmount()
-{
-    return m_amount;
-}
-
-int GameButtonModel::getCost()
+int GameButtonModel::cost() const
 {
     return m_cost;
 }
 
-void GameButtonModel::setCurrentScore(int score)
+int GameButtonModel::initialScore() const
 {
-    if(m_currentScore != score)
-    {
-        m_currentScore = score;
-    }
-
-    emit this->currentScoreChanged(m_currentScore);
+    return m_initialScore;
 }
 
-void GameButtonModel::setInitialScore(int initialScore)
+int GameButtonModel::score() const
 {
-    if(m_initialScore != initialScore)
-    {
-        m_initialScore = initialScore;
-    }
-
-    emit this->initialScoreChanged(m_initialScore);
+    return m_score;
 }
 
-void GameButtonModel::setAmount(int amount)
+int GameButtonModel::amount() const
 {
-    if(m_amount != 0)
-    {
-        m_amount += amount;
-    }
+    return m_amount;
+}
 
-    emit this->amountChanged(m_amount);
+int GameButtonModel::cooldown() const
+{
+    return m_cooldown;
+}
+
+int GameButtonModel::costToAutomate() const
+{
+    return m_costToAutomate;
+}
+
+int GameButtonModel::elapsedTime() const
+{
+    return m_elapsedTime;
+}
+
+void GameButtonModel::saveButton() const
+{
+
+}
+
+void GameButtonModel::setName(const QString &name)
+{
+    if(name != m_name)
+    {
+        m_name = name;
+        emit this->nameChanged(m_name);
+    }
 }
 
 void GameButtonModel::setCost(int cost)
 {
-    if(m_cost != cost)
+    if(cost != m_cost)
     {
         m_cost = cost;
+        emit this->nameChanged(m_cost);
     }
+}
 
-    emit this->costChanged(m_cost);
+void GameButtonModel::setInitialScore(int initialScore)
+{
+    if(initialScore != m_initialScore)
+    {
+        m_initialScore = initialScore;
+        emit this->nameChanged(m_initialScore);
+    }
+}
+
+void GameButtonModel::setScore(int score)
+{
+    if(score != m_score)
+    {
+        m_score = score;
+        emit this->nameChanged(m_score);
+    }
+}
+
+void GameButtonModel::setAmount(int amount)
+{
+    if(amount != m_amount)
+    {
+        m_amount = amount;
+        emit this->nameChanged(m_amount);
+    }
+}
+
+void GameButtonModel::setCooldown(int cooldown)
+{
+    if(cooldown != m_cooldown)
+    {
+        m_cooldown = cooldown;
+        emit this->nameChanged(m_cooldown);
+    }
+}
+
+void GameButtonModel::setCostToAutomate(int costToAutomate)
+{
+    if(costToAutomate != m_costToAutomate)
+    {
+        m_costToAutomate = costToAutomate;
+        emit this->nameChanged(m_costToAutomate);
+    }
+}
+
+void GameButtonModel::setElapsedTime(int elapsedTime)
+{
+    if(elapsedTime != m_elapsedTime)
+    {
+        m_elapsedTime = elapsedTime;
+        emit this->nameChanged(m_elapsedTime);
+    }
 }

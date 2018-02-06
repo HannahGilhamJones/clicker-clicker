@@ -7,39 +7,61 @@ class GameButtonModel : public QObject
 {
     Q_OBJECT
 
-    Q_PROPERTY(int currentScore READ getCurrentScore WRITE setCurrentScore NOTIFY currentScoreChanged)
-    Q_PROPERTY(int initialScore READ getInitialScore WRITE setInitialScore NOTIFY initialScoreChanged)
-    Q_PROPERTY(int amount READ getAmount WRITE setAmount NOTIFY amountChanged)
-    Q_PROPERTY(int cost READ getCost WRITE setCost NOTIFY costChanged)
+    Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
+    Q_PROPERTY(int cost READ cost WRITE setCost NOTIFY costChanged)
+    Q_PROPERTY(int initialScore READ initialScore WRITE setInitialScore NOTIFY initialScoreChanged)
+    Q_PROPERTY(int score READ score WRITE setScore NOTIFY scoreChanged)
+    Q_PROPERTY(int amount READ amount WRITE setAmount NOTIFY amountChanged)
+    Q_PROPERTY(int cooldown READ cooldown WRITE setCooldown NOTIFY cooldownChanged)
+    Q_PROPERTY(int costToAutomate READ costToAutomate WRITE setCostToAutomate NOTIFY costToAutomateChanged)
+    Q_PROPERTY(int elapsedTime READ elapsedTime WRITE setElapsedTime NOTIFY elapsedTimeChanged)
 
 public:
     explicit GameButtonModel(QObject *parent = nullptr);
 
-    int         getCurrentScore();
-    int         getInitialScore();
-    int         getAmount();
-    int         getCost();
+    QString name() const;
+    int     cost() const;
+    int     initialScore() const;
+    int     score() const;
+    int     amount() const;
+    int     cooldown() const;
+    int     costToAutomate() const;
+    int     elapsedTime() const;
+
+    void    saveButton() const;
 
 signals:
 
-    void        currentScoreChanged(int currentScore);
-    void        initialScoreChanged(int initialScore);
-    void        amountChanged(int amount);
-    void        costChanged(int cost);
+    void    nameChanged(QString name);
+    void    costChanged(int cost);
+    void    initialScoreChanged(int m_initialScore);
+    void    scoreChanged(int score);
+    void    amountChanged(int amount);
+    void    cooldownChanged(int cooldown);
+    void    costToAutomateChanged(int costToAutomate);
+    void    elapsedTimeChanged(int elapsedTime);
 
 public slots:
 
-    void        setCurrentScore(int currentScore);
-    void        setInitialScore(int initialScore);
-    void        setAmount(int amount);
-    void        setCost(int cost);
+    void    setName(const QString &name);
+    void    setCost(int cost);
+    void    setInitialScore(int initialScore);
+    void    setScore(int score);
+    void    setAmount(int amount);
+    void    setCooldown(int cooldown);
+    void    setCostToAutomate(int costToAutomate);
+    void    setElapsedTime(int elapsedTime);
 
 private:
 
-    int m_currentScore;
-    int m_initialScore;
-    int m_amount;
-    int m_cost;
+    QString m_name;
+    int     m_cost;
+    int     m_initialScore;
+    int     m_score;
+    int     m_amount;
+    int     m_cooldown;
+    int     m_costToAutomate;
+    int     m_elapsedTime;
 };
 
 #endif // GAMEBUTTON_H
