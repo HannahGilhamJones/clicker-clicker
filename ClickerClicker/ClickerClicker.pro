@@ -47,11 +47,13 @@ macx {
 }
 
 DISTFILES += \
-    qml/Menu.qml \
-    qml/Game.qml \
     qml/Button.qml \
     qml/SceneBase.qml \
-    qml/GameButton.qml
+    qml/GameButton.qml \
+    qml/AchievementScene.qml \
+    qml/SettingsScene.qml \
+    qml/GameScene.qml \
+    qml/MainMenuScene.qml
 
 HEADERS += \
     gamebuttonmodel.h \

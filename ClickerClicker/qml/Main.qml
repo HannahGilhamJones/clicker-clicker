@@ -11,7 +11,7 @@ GameWindow {
 
   state: "menu"
 
-  Menu {
+  MainMenuScene {
     id: menuScene
 
     anchors.fill: parent
@@ -26,7 +26,7 @@ GameWindow {
     onSelectQuitGame: gameWindow.state = "quit"
   }
 
-  Game {
+  GameScene {
     id: gameScene
 
     anchors.fill: parent
