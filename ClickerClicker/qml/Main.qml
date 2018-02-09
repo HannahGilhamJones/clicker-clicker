@@ -37,6 +37,26 @@ GameWindow {
     }
   }
 
+  AchievementScene {
+    id: achievementScene
+
+    anchors.fill: parent
+
+    onReturntoMenu: {
+        gameWindow.state = "menu"
+    }
+  }
+
+  SettingsScene {
+    id: settingsScene
+
+    anchors.fill: parent
+
+    onReturntoMenu: {
+        gameWindow.state = "menu"
+    }
+  }
+
   states: [
        State {
          name: "menu"
@@ -57,13 +77,13 @@ GameWindow {
        },
       State {
           name: "achievements"
-          PropertyChanges {target: menuScene; opacity: 1}
-          PropertyChanges {target: gameWindow; activeScene: menuScene}
+          PropertyChanges {target: achievementScene; opacity: 1}
+          PropertyChanges {target: gameWindow; activeScene: achievementScene}
       },
       State {
           name: "settings"
-          PropertyChanges {target: menuScene; opacity: 1}
-          PropertyChanges {target: gameWindow; activeScene: menuScene}
+          PropertyChanges {target: settingsScene; opacity: 1}
+          PropertyChanges {target: gameWindow; activeScene: settingsScene}
       },
       State {
         name: "quit"
