@@ -30,7 +30,6 @@ SceneBase {
             model: 3
 
             GameButton {
-                text: "Add " + score
 
                 initialScore: {
                     if(index == 0)
@@ -60,8 +59,6 @@ SceneBase {
             model: 3
 
             GameButton {
-                text: "Add " + score
-
                 initialScore: {
                     if(index == 0)
                     {

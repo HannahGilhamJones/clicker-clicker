@@ -17,9 +17,6 @@ Item {
     property string currentColor: buttonMouseArea.enabled ? "#f4d742" : "#cdcdcd"
 
     property int initialScore
-    property int score : initialScore * amount
-    property int cost : 2.71828 * score
-    property int amount : 1
 
     anchors.horizontalCenter: parent.horizontalCenter
 
@@ -75,6 +72,8 @@ Item {
         Text {
             id: buttonText
 
+            text: "Add " + gameButtonModel.score
+
             anchors.centerIn: timerBar
         }
 
@@ -83,7 +82,7 @@ Item {
             anchors.right: timerBar.right
             anchors.bottom: timerBar.bottom
 
-            text: "Amount : " + gameButton.amount
+            text: "Amount : " + gameButtonModel.amount
         }
 
         //Cost
@@ -91,7 +90,7 @@ Item {
             anchors.right: timerBar.right
             anchors.top: timerBar.top
 
-            text: "Cost : " + gameButton.cost * amountToBuy.canBuy
+            text: "Cost : " + gameButtonModel.cost * amountToBuy.canBuy
         }
 
         MouseArea {
@@ -111,7 +110,7 @@ Item {
 
             property int startTime
 
-            interval: initialScore * 100; running: false; repeat: false
+            interval: gameButtonModel.cooldown; running: false; repeat: false
 
             onRunningChanged: {
                 buttonMouseArea.enabled = true
@@ -127,7 +126,7 @@ Item {
     Rectangle {
         id: amountToBuy
 
-        property int canBuy : Math.floor(totalNumberofClicks / gameButton.cost)
+        property int canBuy : Math.floor(totalNumberofClicks / gameButtonModel.cost)
         property int numberBuying : 0
         property string currentColor: toBuyMouseArea.enabled ? "#f4d742" : "#cdcdcd"
 
@@ -153,13 +152,9 @@ Item {
             enabled: amountToBuy.canBuy > 0 ? true : false
 
             onClicked: {
-                gameButtonModel.setAmount(amountToBuy.canBuy)
-                gameButtonModel.setCost(gameButton.cost)
-                gameButtonModel.setCurrentScore(gameButton.initialScore * gameButton.score)
-
                 amountToBuy.numberBuying = amountToBuy.canBuy
-                gameScene.totalNumberofClicks -= gameButton.cost
-                gameButton.amount += amountToBuy.numberBuying
+                gameScene.totalNumberofClicks -= gameButtonModel.cost * amountToBuy.numberBuying
+                gameButtonModel.buyButton(amountToBuy.numberBuying)
             }
         }
     }
@@ -169,13 +164,21 @@ Item {
 
     GameButtonModel {
         id: gameButtonModel
+
+        Component.onCompleted: {
+            setInitialScore(gameButton.initialScore)
+            setAmount(1);
+            setScore(gameButton.initialScore * amount)
+            setCost(2.71828 * score)
+            setCooldown(gameButton.initialScore * 100)
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////
     //FUNCTIONS
 
     onClicked: {
-        gameScene.addClick(score)
+        gameScene.addClick(gameButtonModel.score)
         buttonCooldown.start()
         buttonMouseArea.enabled = false
     }
