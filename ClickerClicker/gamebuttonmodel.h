@@ -34,7 +34,7 @@ signals:
 
     void    nameChanged(QString name);
     void    costChanged(int cost);
-    void    initialScoreChanged(int m_initialScore);
+    void    initialScoreChanged(int initialScore);
     void    scoreChanged(int score);
     void    amountChanged(int amount);
     void    cooldownChanged(int cooldown);
