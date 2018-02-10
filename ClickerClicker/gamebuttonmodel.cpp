@@ -96,9 +96,9 @@ void GameButtonModel::setScore(int score)
 
 void GameButtonModel::setAmount(int amount)
 {
-    if(amount != m_amount)
+    if(amount > 0)
     {
-        m_amount = amount;
+        m_amount += amount;
         emit this->amountChanged(m_amount);
     }
 }
