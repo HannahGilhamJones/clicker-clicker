@@ -129,3 +129,13 @@ void GameButtonModel::setElapsedTime(int elapsedTime)
         emit this->elapsedTimeChanged(m_elapsedTime);
     }
 }
+
+void GameButtonModel::buyButton(int amount)
+{
+    if(amount > 0)
+    {
+        this->setAmount(amount);
+        this->setScore(m_initialScore * m_amount);
+        this->setCost(2.71828 * m_score);
+    }
+}

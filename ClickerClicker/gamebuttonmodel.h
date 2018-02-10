@@ -52,6 +52,8 @@ public slots:
     void    setCostToAutomate(int costToAutomate);
     void    setElapsedTime(int elapsedTime);
 
+    void    buyButton(int amount);
+
 private:
 
     QString m_name;
