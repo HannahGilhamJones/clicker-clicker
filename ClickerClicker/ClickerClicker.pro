@@ -25,7 +25,8 @@ RESOURCES += \ #    resources.qrc # uncomment for publishing
 # The .cpp file which was generated for your project. Feel free to hack it.
 SOURCES += main.cpp \
     gamebuttonmodel.cpp \
-    gametimer.cpp
+    gametimer.cpp \
+    boostbuttonmodel.cpp
 
 android {
     ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
@@ -57,4 +58,5 @@ DISTFILES += \
 
 HEADERS += \
     gamebuttonmodel.h \
-    gametimer.h
+    gametimer.h \
+    boostbuttonmodel.h
