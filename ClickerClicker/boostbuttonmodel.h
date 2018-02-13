@@ -9,6 +9,9 @@ class BoostButtonModel : public QObject
 {
     Q_OBJECT
 
+    Q_PROPERTY(int activeBoostTime READ getActiveBoostTime WRITE setActiveBoostTime NOTIFY changedBoostTime)
+    Q_PROPERTY(bool boosting READ getBoosting WRITE setBoosting NOTIFY changedBoosting)
+
 public:
     explicit BoostButtonModel(QObject *parent = nullptr);
 
