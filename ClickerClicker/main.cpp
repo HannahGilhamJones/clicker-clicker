@@ -6,6 +6,7 @@
 
 #include "gamebuttonmodel.h"
 #include "gametimer.h"
+#include "settingsmodel.h"
 
 int main(int argc, char *argv[])
 {
@@ -14,6 +15,7 @@ int main(int argc, char *argv[])
 
     qmlRegisterType<GameButtonModel>("GameButton", 1, 0, "GameButtonModel");
     qmlRegisterType<GameTimer>("GameTimer", 1, 0, "GameTimer");
+    qmlRegisterType<SettingsModel>("SettingsModel", 1, 0, "SettingsModel");
 
     QQmlApplicationEngine engine;
     vplay.initialize(&engine);
