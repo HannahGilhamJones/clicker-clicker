@@ -1,17 +1,16 @@
-import VPlay 2.0
 import QtQuick 2.0
 
-Scene {
+Item {
   id: sceneBase
 
-  opacity: 0
+  opacity: 1
   visible: opacity > 0
   enabled: visible
 
   //Common background for all scenes
   Rectangle {
       id: rectangle
-      anchors.fill: parent.gameWindowAnchorItem
+      anchors.fill: parent
       color: "#cccccc"
   }
 }

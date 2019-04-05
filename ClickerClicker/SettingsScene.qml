@@ -1,7 +1,5 @@
-import VPlay 2.0
-import QtQuick 2.0
-
-import QtQuick.Controls 1.4
+import QtQuick 2.12
+import QtQuick.Controls 2.5
 
 import SettingsModel 1.0
 
@@ -38,8 +36,8 @@ SceneBase {
         Slider {
             width: settingsScene.width * 0.75
 
-            maximumValue: 100
-            minimumValue: 0
+            to: 100
+            from: 0
             stepSize: 1
 
             value: settingsModel.volume

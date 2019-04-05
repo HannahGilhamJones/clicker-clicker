@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QPair>
+#include <QSize>
 
 class SettingsModel : public QObject
 {

@@ -1,5 +1,5 @@
-import VPlay 2.0
-import QtQuick 2.0
+import QtQuick 2.12
+import QtQuick.Controls 2.5
 
 SceneBase {
     id: gameScene
@@ -87,7 +87,7 @@ SceneBase {
 
             anchors.fill: moonContainer
 
-            source: "qrc:/Moon.svg"
+            source: "qrc:/assets/Moon.png"
 
             MouseArea {
                 anchors.fill: moon
@@ -100,9 +100,9 @@ SceneBase {
     Button {
        text: "Back"
 
-       anchors.right: gameScene.gameWindowAnchorItem.right
+       anchors.right: gameScene.right
        anchors.rightMargin: 10
-       anchors.top: gameScene.gameWindowAnchorItem.top
+       anchors.top: gameScene.top
        anchors.topMargin: 10
 
        onClicked: returntoMenu()

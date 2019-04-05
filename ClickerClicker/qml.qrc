@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>MainMenuScene.qml</file>
+        <file>AchievementScene.qml</file>
+        <file>MenuButton.qml</file>
+        <file>GameButton.qml</file>
+        <file>GameScene.qml</file>
+        <file>SceneBase.qml</file>
+        <file>SettingsScene.qml</file>
+    </qresource>
+</RCC>

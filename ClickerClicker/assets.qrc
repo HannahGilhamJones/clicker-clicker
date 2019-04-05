@@ -1,5 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>qml</file>
+        <file>assets/Moon.png</file>
     </qresource>
 </RCC>

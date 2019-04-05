@@ -1,8 +1,5 @@
 #include "settingsmodel.h"
 
-#include <QApplication>
-#include <QWidget>
-
 SettingsModel::SettingsModel(QObject * parent)
     : QObject(parent),
       m_volume(100),

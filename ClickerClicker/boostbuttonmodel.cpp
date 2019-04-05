@@ -3,8 +3,8 @@
 BoostButtonModel::BoostButtonModel(QObject * parent) :
     QObject(parent),
     m_activeBoostTime(10),
-    m_gameTimer(0),
-    m_cooldownTimer(0),
+    m_gameTimer(nullptr),
+    m_cooldownTimer(nullptr),
     m_boosting(false)
 {
 }
