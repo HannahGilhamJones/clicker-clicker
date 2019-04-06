@@ -16,9 +16,9 @@ SceneBase {
     Button {
        text: "Back"
 
-       anchors.right: achievementScene.gameWindowAnchorItem.right
+       anchors.right: achievementScene.right
        anchors.rightMargin: 10
-       anchors.top: achievementScene.gameWindowAnchorItem.top
+       anchors.top: achievementScene.top
        anchors.topMargin: 10
 
        onClicked: returntoMenu()
