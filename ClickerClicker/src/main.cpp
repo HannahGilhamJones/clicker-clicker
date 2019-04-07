@@ -2,8 +2,8 @@
 #include <QQmlApplicationEngine>
 #include <QQuickStyle>
 
-#include "global.h"
-#include "style.h"
+#include "style\global.h"
+#include "style\style.h"
 
 #include "gamebuttonmodel.h"
 #include "gametimer.h"

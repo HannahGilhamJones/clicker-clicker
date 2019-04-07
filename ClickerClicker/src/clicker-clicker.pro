@@ -19,11 +19,11 @@ SOURCES += \
     boostbuttonmodel.cpp \
     gametimer.cpp \
     settingsmodel.cpp \
-    style.cpp \
-    theme.cpp
+    style\style.cpp \
+    style\theme.cpp
 
-RESOURCES += qml.qrc \
-    assets.qrc
+RESOURCES += qml\qml.qrc \
+    ../assets/assets.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -41,6 +41,6 @@ HEADERS += \
     boostbuttonmodel.h \
     gametimer.h \
     settingsmodel.h \
-    style.h \
-    global.h \
-    theme.h
+    style\style.h \
+    style\global.h \
+    style\theme.h

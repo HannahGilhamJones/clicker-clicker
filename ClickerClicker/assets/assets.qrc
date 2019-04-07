@@ -1,5 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>assets/Moon.png</file>
+        <file>Moon.png</file>
     </qresource>
 </RCC>
