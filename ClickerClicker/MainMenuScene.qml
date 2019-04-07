@@ -2,6 +2,7 @@ import QtQuick 2.12
 import QtQuick.Controls 2.5
 
 import GameTimer 1.0 as GameTimer
+import Style 1.0
 
 SceneBase {
     signal selectGameScene
@@ -50,7 +51,7 @@ SceneBase {
         anchors.centerIn: parent
         spacing: 5
 
-      MenuButton {
+      Button {
           anchors.horizontalCenter: parent.horizontalCenter
 
           text: "Start Game"
@@ -59,28 +60,28 @@ SceneBase {
           }
       }
 
-      MenuButton {
+      Button {
           anchors.horizontalCenter: parent.horizontalCenter
 
           text: "Restart Game"
           onClicked: selectRestartGame()
       }
 
-      MenuButton {
+      Button {
           anchors.horizontalCenter: parent.horizontalCenter
 
           text: "Achievements"
           onClicked: selectAchievementsScene()
       }
 
-      MenuButton {
+      Button {
           anchors.horizontalCenter: parent.horizontalCenter
 
           text: "Settings"
           onClicked: selectSettingsScene()
       }
 
-      MenuButton {
+      Button {
           anchors.horizontalCenter: parent.horizontalCenter
 
           text: "Quit Game"

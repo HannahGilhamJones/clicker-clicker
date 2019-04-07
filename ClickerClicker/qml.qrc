@@ -8,5 +8,6 @@
         <file>GameScene.qml</file>
         <file>SceneBase.qml</file>
         <file>SettingsScene.qml</file>
+        <file>components/Button.qml</file>
     </qresource>
 </RCC>

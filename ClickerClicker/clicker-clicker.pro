@@ -1,4 +1,5 @@
 QT += quick
+QT += quickcontrols2
 CONFIG += c++11
 
 # The following define makes your compiler emit warnings if you use
@@ -17,7 +18,9 @@ SOURCES += \
     gamebuttonmodel.cpp \
     boostbuttonmodel.cpp \
     gametimer.cpp \
-    settingsmodel.cpp
+    settingsmodel.cpp \
+    style.cpp \
+    theme.cpp
 
 RESOURCES += qml.qrc \
     assets.qrc
@@ -37,4 +40,7 @@ HEADERS += \
     gamebuttonmodel.h \
     boostbuttonmodel.h \
     gametimer.h \
-    settingsmodel.h
+    settingsmodel.h \
+    style.h \
+    global.h \
+    theme.h
