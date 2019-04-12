@@ -47,9 +47,7 @@ Item {
             anchors.fill: timerBar
 
             start: Qt.point(0, 0)
-            end: Qt.point(timerBar.width, 0)
-
-            source: timerBar
+            end: Qt.point(this.width, 0)
 
             gradient : Gradient {
                 GradientStop { position: 0.0; color: "#f4d742" }
@@ -101,7 +99,6 @@ Item {
             onReleased: gameButton.released()
             onClicked: gameButton.clicked()
         }
-
 
         //Button cooldown
         Timer {
