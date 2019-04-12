@@ -87,7 +87,7 @@ SceneBase {
 
             anchors.fill: moonContainer
 
-            source: "qrc:/assets/Moon.png"
+            source: "qrc:/Moon.png"
 
             MouseArea {
                 anchors.fill: moon
