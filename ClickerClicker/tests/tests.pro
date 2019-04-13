@@ -13,7 +13,8 @@ SOURCES +=  tst_gamebuttonmodelsuite.cpp \
     tst_gametimersuite.cpp \
     testrunner.cpp \
     ../src/boostbuttonmodel.cpp \
-    ../src/gametimer.cpp
+    ../src/gametimer.cpp \
+    ../src/gamemanager.cpp
 
 HEADERS += tst_boostbuttonmodelsuite.h \
     tst_gamebuttonmodelsuite.h \
@@ -21,6 +22,7 @@ HEADERS += tst_boostbuttonmodelsuite.h \
     tst_gametimersuite.h \
     tst_settingssuite.h \
     ../src/boostbuttonmodel.h \
-    ../src/gametimer.h
+    ../src/gametimer.h \
+    ../src/gamemanager.h
 
 INCLUDEPATH += ../src

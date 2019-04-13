@@ -3,6 +3,8 @@
 
 #include <QTest>
 
+class GameManager;
+
 class GameManagerSuite : public QObject
 {
     Q_OBJECT
@@ -12,7 +14,13 @@ private slots:
     void initTestCase();
     void cleanupTestCase();
 
-    void test_case1();
+    void gameScore();
+    void setGameScore();
+    void updateGameScore();
+
+private:
+
+    GameManager * m_gameManager;
 
 };
 
