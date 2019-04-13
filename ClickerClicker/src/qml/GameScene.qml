@@ -6,15 +6,13 @@ SceneBase {
 
     signal returntoMenu
 
-    property int totalNumberofClicks : 0
-
     Text {
-        id: totalClicksText
+        id: totalScoreText
 
         anchors.horizontalCenter: gameScene.horizontalCenter
         anchors.top: gameScene.top
 
-        text: "Clicks : " + totalNumberofClicks
+        text: "Score : " + GameManager.gameScore
     }
 
     Column {
@@ -92,7 +90,7 @@ SceneBase {
             MouseArea {
                 anchors.fill: moon
 
-                onClicked: addClick(1)
+                onClicked: GameManager.updateGameScore(1)
             }
         }
     }
@@ -106,12 +104,5 @@ SceneBase {
        anchors.topMargin: 10
 
        onClicked: returntoMenu()
-    }
-
-    ////////////////////////////////////////////////////////
-
-    function addClick(score)
-    {
-        totalNumberofClicks += score
     }
 }

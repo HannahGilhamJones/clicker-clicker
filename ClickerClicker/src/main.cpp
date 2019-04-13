@@ -8,6 +8,7 @@
 #include "gamebuttonmodel.h"
 #include "gametimer.h"
 #include "settingsmodel.h"
+#include "gamemanager.h"
 
 int main(int argc, char *argv[])
 {
@@ -20,6 +21,8 @@ int main(int argc, char *argv[])
     qmlRegisterUncreatableType<ComponentType>("ComponentType", 1, 0, "ComponentType", "Cannot create ComponentType in QML");
     qmlRegisterUncreatableType<ThemeType>("ThemeType", 1, 0, "ThemeType", "Cannot create ThemeType in QML");
 
+    GameManager gameManager;
+
     QQuickStyle::setStyle(":/components");
     QQuickStyle::setFallbackStyle("Material");
 
@@ -28,6 +31,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<SettingsModel>("SettingsModel", 1, 0, "SettingsModel");
 
     QQmlApplicationEngine engine;
+    engine.rootContext()->setContextProperty("GameManager", &gameManager);
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     if (engine.rootObjects().isEmpty())
         return -1;

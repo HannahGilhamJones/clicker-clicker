@@ -122,7 +122,7 @@ Item {
     Rectangle {
         id: amountToBuy
 
-        property int canBuy : Math.floor(totalNumberofClicks / gameButtonModel.cost)
+        property int canBuy : Math.floor(GameManager.gameScore / gameButtonModel.cost)
         property int numberBuying : 0
         property string currentColor: toBuyMouseArea.enabled ? "#f4d742" : "#cdcdcd"
 
@@ -149,7 +149,7 @@ Item {
 
             onClicked: {
                 amountToBuy.numberBuying = amountToBuy.canBuy
-                gameScene.totalNumberofClicks -= gameButtonModel.cost * amountToBuy.numberBuying
+                GameManager.updateGameScore(-(gameButtonModel.cost * amountToBuy.numberBuying))
                 gameButtonModel.buyButton(amountToBuy.numberBuying)
             }
         }
@@ -174,7 +174,8 @@ Item {
     //FUNCTIONS
 
     onClicked: {
-        gameScene.addClick(gameButtonModel.score)
+        GameManager.updateGameScore(gameButtonModel.score)
+//        gameScene.addClick(gameButtonModel.score)
         buttonCooldown.start()
         buttonMouseArea.enabled = false
     }

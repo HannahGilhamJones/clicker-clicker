@@ -20,7 +20,8 @@ SOURCES += \
     gametimer.cpp \
     settingsmodel.cpp \
     style\style.cpp \
-    style\theme.cpp
+    style\theme.cpp \
+    gamemanager.cpp
 
 RESOURCES += qml\qml.qrc \
     ../assets/assets.qrc
@@ -43,4 +44,5 @@ HEADERS += \
     settingsmodel.h \
     style\style.h \
     style\global.h \
-    style\theme.h
+    style\theme.h \
+    gamemanager.h
