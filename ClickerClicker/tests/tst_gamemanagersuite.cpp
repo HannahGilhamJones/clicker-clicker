@@ -4,27 +4,25 @@
 
 void GameManagerSuite::initTestCase()
 {
-    m_gameManager = new GameManager();
 }
 
 void GameManagerSuite::cleanupTestCase()
 {
-    m_gameManager->deleteLater();
 }
 
 void GameManagerSuite::gameScore()
 {
     // Expectation: When we initalise a game manager (not on a game load),
     // we should have 0 points
-    Q_ASSERT(m_gameManager->gameScore() == 0);
+    Q_ASSERT(GameManager::instance()->gameScore() == 0);
 }
 
 void GameManagerSuite::setGameScore()
 {
     // Expectation: We should be able to set the game score to a number
     // and receive that number right back
-    m_gameManager->setGameScore(400);
-    Q_ASSERT(m_gameManager->gameScore() == 400);
+    GameManager::instance()->setGameScore(400);
+    Q_ASSERT(GameManager::instance()->gameScore() == 400);
 }
 
 void GameManagerSuite::updateGameScore()
@@ -35,9 +33,9 @@ void GameManagerSuite::updateGameScore()
     QList<int> pointsToAdd = {0, 100, -200, 10, 346, -67};
 
     for (int points : pointsToAdd) {
-        const int originalScore = m_gameManager->gameScore();
-        m_gameManager->updateGameScore(points);
-        const int newScore = m_gameManager->gameScore();
+        const int originalScore = GameManager::instance()->gameScore();
+        GameManager::instance()->updateGameScore(points);
+        const int newScore = GameManager::instance()->gameScore();
 
         qInfo() << "Started with " << originalScore << " added " << points;
         qInfo() << "Ended with " << newScore;

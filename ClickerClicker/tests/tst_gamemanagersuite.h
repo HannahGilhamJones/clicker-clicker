@@ -17,11 +17,6 @@ private slots:
     void gameScore();
     void setGameScore();
     void updateGameScore();
-
-private:
-
-    GameManager * m_gameManager;
-
 };
 
 #endif // TST_GAMEMANAGERSUITE_H

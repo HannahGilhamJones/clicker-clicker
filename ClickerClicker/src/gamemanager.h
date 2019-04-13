@@ -11,7 +11,7 @@ class GameManager : public QObject
 
 public:
 
-    explicit GameManager(QObject *parent = nullptr);
+    static GameManager * instance();
 
     int gameScore() const;
     void setGameScore(int points);
@@ -23,6 +23,10 @@ public slots:
 signals:
 
     void gameScoreChanged();
+
+protected:
+
+    explicit GameManager(QObject *parent = nullptr);
 
 private:
 

@@ -8,6 +8,12 @@ GameManager::GameManager(QObject *parent) :
 {
 }
 
+GameManager * GameManager::instance()
+{
+    static GameManager * i = new GameManager();
+    return i;
+}
+
 int GameManager::gameScore() const
 {
     return m_gameScore;

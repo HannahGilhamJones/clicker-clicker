@@ -3,6 +3,8 @@
 
 #include <QTest>
 
+class GameButtonModel;
+
 class GameButtonModelSuite : public QObject
 {
     Q_OBJECT
@@ -13,6 +15,10 @@ private slots:
     void cleanupTestCase();
 
     void test_case1();
+
+private:
+
+    GameButtonModel * m_gameButtonModel;
 
 };
 
