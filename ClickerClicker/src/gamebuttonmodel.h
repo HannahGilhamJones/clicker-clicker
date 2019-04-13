@@ -16,6 +16,7 @@ class GameButtonModel : public QObject
     Q_PROPERTY(int cooldown READ cooldown WRITE setCooldown NOTIFY cooldownChanged)
     Q_PROPERTY(int costToAutomate READ costToAutomate WRITE setCostToAutomate NOTIFY costToAutomateChanged)
     Q_PROPERTY(int elapsedTime READ elapsedTime WRITE setElapsedTime NOTIFY elapsedTimeChanged)
+    Q_PROPERTY(int amountToBuy READ amountToBuy NOTIFY amountToBuyChanged)
 
 public:
     explicit GameButtonModel(QObject *parent = nullptr);
@@ -32,6 +33,7 @@ public:
     int     elapsedTime() const;
 
     void    saveButton() const;
+    int     amountToBuy() const;
 
 signals:
 
@@ -43,6 +45,8 @@ signals:
     void    cooldownChanged(int cooldown);
     void    costToAutomateChanged(int costToAutomate);
     void    elapsedTimeChanged(int elapsedTime);
+
+    void    amountToBuyChanged();
 
 public slots:
 

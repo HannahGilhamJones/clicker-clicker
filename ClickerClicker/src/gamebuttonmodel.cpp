@@ -1,6 +1,9 @@
 #include "gamebuttonmodel.h"
 
 #include <QDebug>
+#include <QtMath>
+
+#include "gamemanager.h"
 
 GameButtonModel::GameButtonModel(QObject * parent) :
     QObject(parent),
@@ -13,6 +16,11 @@ GameButtonModel::GameButtonModel(QObject * parent) :
     m_score = m_initialScore * m_amount;
     m_cost = 3 * m_score;
     m_cooldown = m_initialScore * 100;
+
+    connect(GameManager::instance(), &GameManager::gameScoreChanged, this, [ = ]() {
+        this->amountToBuy();
+        emit this->amountToBuyChanged();
+    });
 }
 
 GameButtonModel *GameButtonModel::qmlAttachedProperties(QObject *object)
@@ -88,9 +96,10 @@ void GameButtonModel::setInitialScore(int initialScore)
     if(initialScore != m_initialScore)
     {
         m_initialScore = initialScore;
-        m_score = m_initialScore * m_amount;
-        m_cost = 3 * m_score;
-        m_cooldown = m_initialScore * 100;
+        this->setScore(m_initialScore * m_amount);
+        this->setCost(3 * m_score);
+        this->setCooldown(m_initialScore * 100);
+
         emit this->initialScoreChanged(m_initialScore);
     }
 }
@@ -100,8 +109,9 @@ void GameButtonModel::setScore(int score)
     if(score != m_score)
     {
         m_score = score;
-        m_cost = 3 * m_score;
-        m_cooldown = m_initialScore * 100;
+        this->setCost(3 * m_score);
+        this->setCooldown(m_initialScore * 100);
+
         emit this->scoreChanged(m_score);
     }
 }
@@ -111,9 +121,10 @@ void GameButtonModel::setAmount(int amount)
     if(amount > 0)
     {
         m_amount += amount;
-        m_score = m_initialScore * m_amount;
-        m_cost = 3 * m_score;
-        m_cooldown = m_initialScore * 100;
+        this->setScore(m_initialScore * m_amount);
+        this->setCost(3 * m_score);
+        this->setCooldown(m_initialScore * 100);
+
         emit this->amountChanged(m_amount);
     }
 }
@@ -123,9 +134,9 @@ void GameButtonModel::setCooldown(int cooldown)
     if(cooldown != m_cooldown)
     {
         m_cooldown = cooldown;
-        m_score = m_initialScore * m_amount;
-        m_cost = 3 * m_score;
-        m_cooldown = m_initialScore * 100;
+        this->setScore(m_initialScore * m_amount);
+        this->setCost(3 * m_score);
+
         emit this->cooldownChanged(m_cooldown);
     }
 }
@@ -148,10 +159,21 @@ void GameButtonModel::setElapsedTime(int elapsedTime)
     }
 }
 
+int GameButtonModel::amountToBuy() const
+{
+    if (GameManager::instance()->gameScore() == 0) {
+        return 0;
+    }
+
+    return qFloor(GameManager::instance()->gameScore() / m_cost);
+}
+
 void GameButtonModel::buyButton(int amount)
 {
     if(amount > 0)
     {
+        GameManager::instance()->updateGameScore(-(m_cost * amount));
+
         this->setAmount(amount);
         this->setScore(m_initialScore * m_amount);
         this->setCost(3 * m_score);
