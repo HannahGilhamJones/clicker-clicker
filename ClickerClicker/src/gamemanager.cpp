@@ -25,11 +25,11 @@ void GameManager::setGameScore(int points) {
 
 void GameManager::updateGameScore(int points)
 {
-    qInfo() << "GameManager::updateGameScore -> " << points;
-
     m_gameScore += points;
 
-    qInfo() << "Game score updated -> " << m_gameScore;
+    if (m_gameScore < 0){
+        m_gameScore = 0;
+    }
 
     emit this->gameScoreChanged();
 }
