@@ -54,7 +54,7 @@ SceneBase {
         }
     }
 
-    Item {
+    BoostButton {
 
         id: moonContainer
 
@@ -62,20 +62,6 @@ SceneBase {
         height: width
 
         anchors.centerIn: gameScene
-
-        Image {
-            id: moon
-
-            anchors.fill: moonContainer
-
-            source: "qrc:/Moon.png"
-
-            MouseArea {
-                anchors.fill: moon
-
-                onClicked: GameManager.updateGameScore(1)
-            }
-        }
     }
 
     Button {

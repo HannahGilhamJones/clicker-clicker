@@ -9,5 +9,6 @@
         <file>SceneBase.qml</file>
         <file>SettingsScene.qml</file>
         <file>components/Button.qml</file>
+        <file>BoostButton.qml</file>
     </qresource>
 </RCC>
