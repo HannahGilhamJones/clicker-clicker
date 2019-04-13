@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     qmlRegisterUncreatableType<Style>("Style", 1, 0, "Style", "Style is an attached property");
-
+    qmlRegisterUncreatableType<GameButtonModel>("GameButtonModel", 1, 0, "GameButtonModel", "GameButtonModel is an attached property");
     qmlRegisterUncreatableType<ComponentType>("ComponentType", 1, 0, "ComponentType", "Cannot create ComponentType in QML");
     qmlRegisterUncreatableType<ThemeType>("ThemeType", 1, 0, "ThemeType", "Cannot create ThemeType in QML");
 
@@ -26,7 +26,6 @@ int main(int argc, char *argv[])
     QQuickStyle::setStyle(":/components");
     QQuickStyle::setFallbackStyle("Material");
 
-    qmlRegisterType<GameButtonModel>("GameButton", 1, 0, "GameButtonModel");
     qmlRegisterType<GameTimer>("GameTimer", 1, 0, "GameTimer");
     qmlRegisterType<SettingsModel>("SettingsModel", 1, 0, "SettingsModel");
 

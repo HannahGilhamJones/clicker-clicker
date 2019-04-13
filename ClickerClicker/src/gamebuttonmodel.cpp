@@ -15,6 +15,11 @@ GameButtonModel::GameButtonModel(QObject * parent) :
     m_cooldown = m_initialScore * 100;
 }
 
+GameButtonModel *GameButtonModel::qmlAttachedProperties(QObject *object)
+{
+    return new GameButtonModel(object);
+}
+
 QString GameButtonModel::name() const
 {
     return m_name;

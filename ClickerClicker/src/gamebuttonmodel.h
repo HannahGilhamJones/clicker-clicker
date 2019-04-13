@@ -1,6 +1,7 @@
 #ifndef GAMEBUTTON_H
 #define GAMEBUTTON_H
 
+#include <QQmlEngine>
 #include <QObject>
 
 class GameButtonModel : public QObject
@@ -18,6 +19,8 @@ class GameButtonModel : public QObject
 
 public:
     explicit GameButtonModel(QObject *parent = nullptr);
+
+    static GameButtonModel * qmlAttachedProperties(QObject * object);
 
     QString name() const;
     int     cost() const;
@@ -65,5 +68,6 @@ private:
     int     m_costToAutomate;
     int     m_elapsedTime;
 };
+QML_DECLARE_TYPEINFO(GameButtonModel, QML_HAS_ATTACHED_PROPERTIES)
 
 #endif // GAMEBUTTON_H

@@ -3,10 +3,13 @@ import QtQuick.Controls 2.0
 import QtQuick.Controls.Styles 1.4
 import QtGraphicalEffects 1.0
 
-import GameButton 1.0
+import GameButtonModel 1.0
 
 Item {
-    id: gameButton
+    id: root
+
+    GameButtonModel.initialScore: 0
+    GameButtonModel.amount: 1
 
     signal clicked
     signal pressed
@@ -14,8 +17,6 @@ Item {
 
     property alias text: buttonText.text
     property string currentColor: buttonMouseArea.enabled ? "#f4d742" : "#cdcdcd"
-
-    property int initialScore
 
     anchors.horizontalCenter: parent.horizontalCenter
 
@@ -68,10 +69,10 @@ Item {
         //Name of the button
         Text {
             id: buttonText
-
-            text: "Add " + gameButtonModel.score
-
             anchors.centerIn: timerBar
+
+            text: "Add " + root.GameButtonModel.score
+
         }
 
         //Amount
@@ -79,7 +80,7 @@ Item {
             anchors.right: timerBar.right
             anchors.bottom: timerBar.bottom
 
-            text: "Amount : " + gameButtonModel.amount
+            text: "Amount : " + root.GameButtonModel.amount
         }
 
         //Cost
@@ -87,7 +88,7 @@ Item {
             anchors.right: timerBar.right
             anchors.top: timerBar.top
 
-            text: "Cost : " + gameButtonModel.cost * amountToBuy.canBuy
+            text: "Cost : " + root.GameButtonModel.cost * amountToBuy.canBuy
         }
 
         MouseArea {
@@ -95,9 +96,12 @@ Item {
 
             anchors.fill: timerBar
 
-            onPressed: gameButton.pressed()
-            onReleased: gameButton.released()
-            onClicked: gameButton.clicked()
+            onPressed: {
+                root.opacity = 0.5
+                root.pressed()
+            }
+            onReleased: root.released()
+            onClicked: root.clicked()
         }
 
         //Button cooldown
@@ -106,7 +110,7 @@ Item {
 
             property int startTime
 
-            interval: gameButtonModel.cooldown; running: false; repeat: false
+            interval: root.GameButtonModel.cooldown; running: false; repeat: false
 
             onRunningChanged: {
                 buttonMouseArea.enabled = true
@@ -122,7 +126,7 @@ Item {
     Rectangle {
         id: amountToBuy
 
-        property int canBuy : Math.floor(GameManager.gameScore / gameButtonModel.cost)
+        property int canBuy : GameManager.gameScore > 0 ? Math.floor(GameManager.gameScore / root.GameButtonModel.cost) : 0
         property int numberBuying : 0
         property string currentColor: toBuyMouseArea.enabled ? "#f4d742" : "#cdcdcd"
 
@@ -149,24 +153,9 @@ Item {
 
             onClicked: {
                 amountToBuy.numberBuying = amountToBuy.canBuy
-                GameManager.updateGameScore(-(gameButtonModel.cost * amountToBuy.numberBuying))
-                gameButtonModel.buyButton(amountToBuy.numberBuying)
+                GameManager.updateGameScore(-(root.GameButtonModel.cost * amountToBuy.numberBuying))
+                root.GameButtonModel.buyButton(amountToBuy.numberBuying)
             }
-        }
-    }
-
-    ///////////////////////////////////////////////////////////////////////////
-    //MODEL
-
-    GameButtonModel {
-        id: gameButtonModel
-
-        Component.onCompleted: {
-            setInitialScore(gameButton.initialScore)
-            setAmount(1);
-            setScore(gameButton.initialScore * amount)
-            setCost(2.71828 * score)
-            setCooldown(gameButton.initialScore * 100)
         }
     }
 
@@ -174,17 +163,9 @@ Item {
     //FUNCTIONS
 
     onClicked: {
-        GameManager.updateGameScore(gameButtonModel.score)
-//        gameScene.addClick(gameButtonModel.score)
+        GameManager.updateGameScore(root.GameButtonModel.score)
+//        gameScene.addClick(root.GameButtonModel.score)
         buttonCooldown.start()
         buttonMouseArea.enabled = false
-    }
-
-    onPressed: {
-        opacity = 0.5
-    }
-
-    onReleased: {
-        opacity = 1.0
     }
 }

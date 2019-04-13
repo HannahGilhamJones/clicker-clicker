@@ -1,6 +1,8 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.5
 
+import GameButtonModel 1.0
+
 SceneBase {
     id: gameScene
 
@@ -28,17 +30,7 @@ SceneBase {
             model: 3
 
             GameButton {
-
-                initialScore: {
-                    if(index == 0)
-                    {
-                        initialScore = (index + 1) * 5
-                    }
-                    else
-                    {
-                        initialScore = (index * 10) * 3
-                    }
-                }
+                GameButtonModel.initialScore: index == 0 ? (index + 1) * 5 : (index * 10) * 3
             }
         }
     }
@@ -57,16 +49,7 @@ SceneBase {
             model: 3
 
             GameButton {
-                initialScore: {
-                    if(index == 0)
-                    {
-                        initialScore = (index + 100) * 2
-                    }
-                    else
-                    {
-                        initialScore = (index * 5) * 100
-                    }
-                }
+                GameButtonModel.initialScore: index == 0 ? (index + 100) * 2 : (index * 5) * 100
             }
         }
     }
