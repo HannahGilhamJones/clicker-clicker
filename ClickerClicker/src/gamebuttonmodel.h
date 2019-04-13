@@ -63,6 +63,10 @@ public slots:
 
 private:
 
+    void    updateScore();
+    void    updateCooldown();
+    void    updateCost();
+
     QString m_name;
     int     m_cost;
     int     m_initialScore;

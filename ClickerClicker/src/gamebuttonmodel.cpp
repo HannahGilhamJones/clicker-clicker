@@ -13,9 +13,9 @@ GameButtonModel::GameButtonModel(QObject * parent) :
     m_costToAutomate(0),
     m_elapsedTime(0)
 {
-    m_score = m_initialScore * m_amount;
-    m_cost = 3 * m_score;
-    m_cooldown = m_initialScore * 100;
+    this->updateScore();
+    this->updateCost();
+    this->updateCooldown();
 
     connect(GameManager::instance(), &GameManager::gameScoreChanged, this, [ = ]() {
         this->amountToBuy();
@@ -96,9 +96,8 @@ void GameButtonModel::setInitialScore(int initialScore)
     if(initialScore != m_initialScore)
     {
         m_initialScore = initialScore;
-        this->setScore(m_initialScore * m_amount);
-        this->setCost(3 * m_score);
-        this->setCooldown(m_initialScore * 100);
+        this->updateScore();
+        this->updateCooldown();
 
         emit this->initialScoreChanged(m_initialScore);
     }
@@ -109,8 +108,7 @@ void GameButtonModel::setScore(int score)
     if(score != m_score)
     {
         m_score = score;
-        this->setCost(3 * m_score);
-        this->setCooldown(m_initialScore * 100);
+        this->updateCost();
 
         emit this->scoreChanged(m_score);
     }
@@ -121,9 +119,9 @@ void GameButtonModel::setAmount(int amount)
     if(amount > 0)
     {
         m_amount += amount;
-        this->setScore(m_initialScore * m_amount);
-        this->setCost(3 * m_score);
-        this->setCooldown(m_initialScore * 100);
+
+        this->updateScore();
+        this->updateCost();
 
         emit this->amountChanged(m_amount);
     }
@@ -134,9 +132,6 @@ void GameButtonModel::setCooldown(int cooldown)
     if(cooldown != m_cooldown)
     {
         m_cooldown = cooldown;
-        this->setScore(m_initialScore * m_amount);
-        this->setCost(3 * m_score);
-
         emit this->cooldownChanged(m_cooldown);
     }
 }
@@ -178,4 +173,19 @@ void GameButtonModel::buyButton(int amount)
         this->setScore(m_initialScore * m_amount);
         this->setCost(3 * m_score);
     }
+}
+
+void GameButtonModel::updateScore()
+{
+    this->setScore(m_initialScore * m_amount);
+}
+
+void GameButtonModel::updateCooldown()
+{
+    this->setCooldown(m_initialScore * 100);
+}
+
+void GameButtonModel::updateCost()
+{
+    this->setCost(3 * m_score);
 }
